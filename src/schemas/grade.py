@@ -15,4 +15,4 @@ class Grade (enum.IntEnum):
 class GradeSchema(BaseModel):
     question_id: int
     command_id: int
-    score: Literal[Grade.okay, Grade.good, Grade.bad]
+    score: Literal[Grade.bad, Grade.okay, Grade.good, Grade.very_good, Grade.perfect]

@@ -18,12 +18,6 @@ router = APIRouter(
     tags=["commands"],
 )
 
-fastapi_users = FastAPIUsers[User, int](
-    get_user_manager,
-    [auth_backend],
-)
-
-current_user = fastapi_users.current_user()
 
 @router.post('/', response_model=CommandType)
 async def create_new_command(new_command: CreateCommand, session: AsyncSession = Depends(get_async_session)):
@@ -41,8 +35,3 @@ async def get_all_command(session: AsyncSession = Depends(get_async_session)):
 async def get_command_by_id(id: int, session: AsyncSession = Depends(get_async_session)):
     command = await get_command_by_id_router(id, session)
     return command
-
-
-@router.get("/user")
-async def get_user(session: AsyncSession = Depends(get_async_session), user: User = Depends(current_user)):
-    return user.email

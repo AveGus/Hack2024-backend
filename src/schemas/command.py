@@ -12,5 +12,6 @@ class CreateCommand(BaseModel):
 class CommandType(BaseModel):
     id: int
     Name: str
+    status: str
     case: CaseType
 
